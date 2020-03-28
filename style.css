@@ -1,0 +1,22 @@
+.column{
+    padding-bottom: 35px;
+}
+
+img{
+    width: 25%;
+    height: 250px;
+    animation: ani 1.5s linear;
+}
+
+
+@keyframes ani{
+    0%{
+        transform: scale(1.2);
+    }
+    30%{
+        transform: scale(1);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
