@@ -1,7 +1,7 @@
 export default class ItemDeal {
-    constructor(name, color){
-        this.name = name;
+    constructor(text, color){
+        this.text = text;
         this.color = color;
-        this.now = new Date;
+        this.createAt = new Date;
     }
 }

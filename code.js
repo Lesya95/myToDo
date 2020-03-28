@@ -18,12 +18,9 @@ setInterval(anim, 1500);
 
 
 
+import { motiv_arr, ImportantArr, backgroundColor, MonthArray} from "./data"
+import ItemDeal from "./ItemDeal";
 
-
-const motiv_arr = ["все победы начинаются с победы над самим собой", "just do it", "все победы начинаются с webpack", "делу время, потехе час"];
-const ImportantArr = ['has-text-danger', 'has-text-warning', 'has-text-success'];
-const backgroundColor = ['has-background-danger', 'has-background-info', 'has-background-primary'];
-const MonthArray = ['Февраль','Январь','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
 
 const add_button = document.querySelector(".button-plus");
 const input = document.querySelector("input");
@@ -47,20 +44,47 @@ setInterval(changePhrase, 2000);
 
 function createItem(){
     let text = input.value;
+
     if(text == ''){
         return; // return обрывает всю работу нашей функции
     }
-    root.insertAdjacentHTML('afterBegin', `<div class="wrap-task field is-grouped">
-    <button class="button is-medium is-fullwidth ${backgroundColor[select.value-1]}">${text}</button>
-    <button class=" btn-delete button is-danger is-medium is-outlined">
-        <span>Delete</span>
-        <span class="icon is-small">
-            <i class="fa fa-times"></i>
-        </span>
-    </button>
-</div>`);
+    let item = new ItemDeal(text, select.value - 1)
+    let item_to_JSON = JSON.stringify(item)
+    localStorage.setItem(+item.createAt, item_to_JSON)
+    DrawItem(item)
+
     input.value = '';
 }
+
+function DrawItem(item) {
+    root.insertAdjacentHTML('afterBegin', `<div class="wrap-task field is-grouped" id='${+item.createAt}'>
+ <button class="has-text-white button is-medium is-fullwidth ${backgroundColor[item.color]}">  ${item.text}
+ <span>${item.createAt.getDate()} ${MonthArray[item.createAt.getMonth()]} </span>
+ </button>
+ <button class="btn-delete button is-danger is-medium is-outlined">
+     <span>Delete</span>
+     <span class="icon is-small">
+         <i class="fa fa-times"></i>
+     </span>
+ </button>
+</div>`);
+}
+
+
+(function DrawOnLoad() {
+    for(let i = 0; i < localStorage.length; i++) {
+        let lk_key = localStorage.key(i)
+        let content = localStorage.getItem(lk_key);
+        let item = JSON.parse(content)
+        let tempo_dat = Date.parse(item.createAt)
+        item.createAt = new Date(tempo_dat)
+
+        DrawItem(item)
+    }
+})();
+
+
+
 add_button.addEventListener("click", createItem);
 
 input.addEventListener("keypress", (e) => {
@@ -73,8 +97,10 @@ root.addEventListener("click", (e) => {
     if(e.target.className == "fa fa-times"){
         var btn = e.target;
     }
+    let deal = btn.parentNode.parentNode.parentNode;
     setTimeout(() => {
-        btn.parentNode.parentNode.parentNode.remove();
+        localStorage.removeItem(deal.id)
+        deal.remove();
     }, 300)
 })
 
