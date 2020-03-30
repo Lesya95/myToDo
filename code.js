@@ -1,4 +1,18 @@
-import ItenDeal from "./ItemDeal";
+import ItemDeal from "./ItemDeal"
+import anime from "./node_modules/animejs/lib/anime.min"
+
+const json = require("./fixtures.json")
+
+console.table(json)
+
+const {motiv_arr,ImportantArr, backgroundColor, MonthArray } = json
+
+const add_button = document.querySelector(".button-plus");
+const input = document.querySelector("input");
+const root = document.getElementById("root");
+const select = document.querySelector("select");
+
+
 
 var img = document.getElementById('img');
 var images = ['img/monster1.svg', 'img/monster2.svg', 'img/monster3.svg', 'img/monster.svg', 'img/monster4.svg'];
@@ -16,16 +30,6 @@ function anim() {
 setInterval(anim, 1500);
 
 
-
-
-import { motiv_arr, ImportantArr, backgroundColor, MonthArray} from "./data"
-import ItemDeal from "./ItemDeal";
-
-
-const add_button = document.querySelector(".button-plus");
-const input = document.querySelector("input");
-const root = document.getElementById("root");
-const select = document.querySelector("select");
 
 
 
