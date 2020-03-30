@@ -29,6 +29,71 @@ function anim() {
 
 setInterval(anim, 1500);
 
+var textWrapper = document.querySelector('.h1-anime');
+textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+
+anime.timeline({loop: true})
+  .add({
+    targets: '.h1-anime .letter',
+    scale: [4,1],
+    opacity: [0,1],
+    translateZ: 0,
+    easing: "easeOutExpo",
+    duration: 950,
+    delay: (el, i) => 70*i})
+  .add({
+    targets: '.h1-anime',
+    opacity: 0,
+    duration: 1000,
+    easing: "easeOutExpo",
+    delay: 1000
+  });
+// let grids = document.querySelectorAll('.anime');
+// let num = 0;
+
+// const delay = time => new Promise(resolve => setTimeout(resolve, time));
+
+// grids.forEach(grid => {
+//     delay(0).then(() => {
+//         setTimeout(() => {
+//             grid.style.backgroundColor = 'lightblue';
+//         }, num += 100)
+//     })
+
+//     delay(500).then(() => {
+//         setTimeout(() => {
+//             grid.style.backgroundColor = 'rgb(228, 242, 255)';
+//             grid.style.width = '90%'
+//         }, num += 100)
+//     })
+// })
+
+let tl = anime.timeline({
+    easing: 'easeOutExpo',
+    duration: 750
+})
+
+tl.add({
+    targets: ".anime",
+    width: '100%',
+    backgroundColor: '#00d1b2',
+    delay: anime.stagger(100)
+})
+tl.add({
+    targets: ".anime",
+    width: '90%',
+    backgroundColor: '#c4f1ea',
+})
+
+tl.add({
+    targets: 'section',
+    scaleY: '1',
+    scaleX: '1',
+    translateX: '30%',
+    rotate: '45deg',
+    duration: 5000,
+    
+})
 
 
 
