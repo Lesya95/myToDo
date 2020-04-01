@@ -111,7 +111,7 @@ function changePhrase(){
 }
 setInterval(changePhrase, 2000);
 
-function createItem(){
+async function createItem(){
     let text = input.value;
     if(text == ''){
         return; // return обрывает всю работу нашей функции

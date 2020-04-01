@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <script src="dist/code.bundle.js" async></script>
+    <link rel="stylesheet" href="bulma.min.css">
+    <link rel="stylesheet" href="font-awesome.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="background-anime">
+         <section>
+            <div class="anime"></div>
+            <div class="anime"></div>
+            <div class="anime"></div>
+            <div class="anime"></div>
+            <div class="anime"></div>
+            <div class="anime"></div>
+            <div class="anime"></div>
+            <div class="anime"></div>
+            <div class="anime"></div>
+            <div class="anime"></div>
+        </section>
+        <div class="columns is-centered has-background-primary">
+
+            <div class="column is-half has-text-centered">
+                <div id="img">
+                    <img class="images" src="img/monster.svg" alt="">
+                </div>
+                <h1 class="is-size-1 anime-text h1-anime"> To-do приложение</h1>
+                <q class="is-size-4 has-text-white"> Мотивационный текст </q>
+            </div>
+        </div>
+
+       
+        <div class="columns is-centered">
+            <div class="column is-1 is-offset-1">
+                <div class="select is-medium">
+                    <select>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="column is-3">
+                <div class="field">
+                    <div class="control">
+                        <input class="input is-primary is-medium" type="text" placeholder="Введите дело">
+                    </div>
+                </div>
+            </div>
+            <div class="column is-2">
+                <button class="button is-info is-medium button-plus"> <i class="fa fa-plus"></i></button>
+            </div>
+        </div>
+        <div class="columns is-centered">
+            <div class="column is-half" id="root">
+
+
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
