@@ -113,22 +113,24 @@ setInterval(changePhrase, 2000);
 
 function createItem(){
     let text = input.value;
-
     if(text == ''){
         return; // return обрывает всю работу нашей функции
     }
     let item = new ItemDeal(text, select.value - 1)
     let item_to_JSON = JSON.stringify(item)
-    localStorage.setItem(+item.createAt, item_to_JSON)
-    DrawItem(item)
 
+    localStorage.setItem(+item.createAt, item_to_JSON)
+
+    DrawItem(item)// отдельная функция, которая делает отрисовку
+    // сохранение информации в localStorage
+    // упаковка информации
     input.value = '';
 }
 
-function DrawItem(item) {
+function DrawItem(item){
     root.insertAdjacentHTML('afterBegin', `<div class="wrap-task field is-grouped" id='${+item.createAt}'>
  <button class="has-text-white button is-medium is-fullwidth ${backgroundColor[item.color]}">  ${item.text}
- <span>${item.createAt.getDate()} ${MonthArray[item.createAt.getMonth()]} </span>
+ <span style = "margin-left: 100px">${item.createAt.getDate()} ${MonthArray[item.createAt.getMonth()]} </span>
  </button>
  <button class="btn-delete button is-danger is-medium is-outlined">
      <span>Delete</span>
@@ -139,18 +141,19 @@ function DrawItem(item) {
 </div>`);
 }
 
+// (function DrawOnLoad(){
+//     for (let i = 0; i < localStorage.length; i++) {
+//         let lk_key = localStorage.key(i) // получить ключ по номеру
+//         let content = localStorage.getItem(lk_key);
+//         let item = JSON.parse(content)
+   
+//         let tempo_dat = Date.parse(item.createAt)
+     
+//         item.createAt = new Date(tempo_dat)
 
-(function DrawOnLoad() {
-    for(let i = 0; i < localStorage.length; i++) {
-        let lk_key = localStorage.key(i)
-        let content = localStorage.getItem(lk_key);
-        let item = JSON.parse(content)
-        let tempo_dat = Date.parse(item.createAt)
-        item.createAt = new Date(tempo_dat)
-
-        DrawItem(item)
-    }
-})();
+//         DrawItem(item)
+//     }
+// })();
 
 
 
@@ -199,3 +202,17 @@ window.onload = () => {
 select.onchange = () => {
     ChangeColorEl(select);
 }
+
+(function DrawOnLoad(){
+    for (let i = 0; i < localStorage.length; i++) {
+        let lk_key = localStorage.key(i) // получить ключ по номеру
+        let content = localStorage.getItem(lk_key);
+        let item = JSON.parse(content)
+   
+        let tempo_dat = Date.parse(item.createAt)
+     
+        item.createAt = new Date(tempo_dat)
+
+        DrawItem(item)
+    }
+})();
