@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "animejs": "^3.1.0",
-    "font-awesome": "^4.7.0"
+    "font-awesome": "^4.7.0",
+    "gulp-autoprefixer": "^7.0.1"
   }
 }

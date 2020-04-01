@@ -4,6 +4,7 @@ const rename = require('gulp-rename')
 const cssmin = require('gulp-cssmin');
 // соединение файлов
 const concat = require('gulp-concat')
+const autoprefixer = require('gulp-autoprefixer')
 
 //все итоговые файлы у нас уходят в папку билд
 
@@ -18,6 +19,7 @@ function copyCss(){
     return src(['node_modules/bulma/css/bulma.css', 'node_modules/font-awesome/css/font-awesome.css'])
     .pipe(cssmin())
     .pipe(concat('style.css'))
+    .pipe(autoprefixer({cascade:false}))
     .pipe(rename({suffix:".min"}))
     .pipe(dest('build/css'));
 }
